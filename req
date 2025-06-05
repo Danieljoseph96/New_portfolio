@@ -1,0 +1,19 @@
+npm install webpack webpack-cli webpack-dev-server --save-dev
+npm install style-loader css-loader sass-loader sass mini-css-extract-plugin html-webpack-plugin --save-dev
+npm install jquery
+
+
+
+
+
+
+
+npx webpack serve
+
+
+npx webpack --mode=production
+
+
+
+
+               

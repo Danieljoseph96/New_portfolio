@@ -1,0 +1,72 @@
+{
+  "profile": {
+    "name": "Daniel Joseph",
+    "title": "CEH Certified | DRM Full Stack Developer | Mobile Developer",
+    "intro": "Passionate about building secure, scalable applications using Django, React, and mobile technologies. Experienced in applying cybersecurity principles to web and mobile development."
+  },
+  "links": {
+    "github": {
+      "url": "https://github.com/danieljoseph96",
+      "icon": "bi-github"
+    },
+    "facebook": {
+      "url": "https://facebook.com/yourprofile",
+      "icon": "bi-facebook"
+    },
+    "linkedin": {
+      "url": "https://linkedin.com/in/yourprofile",
+      "icon": "bi-linkedin"
+    },
+    "twitter": {
+      "url": "https://twitter.com/yourhandle",
+      "icon": "bi-twitter"
+    },
+    "instagram": {
+      "url": "https://instagram.com/yourprofile",
+      "icon": "bi-instagram"
+    },
+    "tryhackme": {
+      "url": "https://tryhackme.com/p/yourusername",
+      "icon": "bi-shield-lock"
+    },
+    "hackthebox": {
+      "url": "https://app.hackthebox.com/profile/yourprofileid",
+      "icon": "bi-terminal"
+    },
+    "portfolio": {
+      "url": "https://your-portfolio-link.com",
+      "icon": "bi-person-badge"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "description": [
+      "I am a full-stack developer specializing in Python Django and React, with additional expertise in mobile app development using React Native.",
+      "Holding a Certified Ethical Hacker (CEH) certification, I focus on building secure applications by integrating cybersecurity best practices into my development workflow."
+    ]
+  },
+  "experience": [
+    {
+      "title": "TECHNICAL SUPPORT SLA ELECTION PROJECT",
+      "year": "Year",
+      "role": "Technical Support"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Secure Web App",
+      "description": "Developed a Django + React application implementing role-based access control and JWT authentication to ensure robust security.",
+      "repo": "https://github.com/danieljoseph96/secure-web-app"
+    },
+    {
+      "name": "Mobile Chat App",
+      "description": "Built a cross-platform chat app with React Native featuring real-time messaging, end-to-end encryption, and push notifications.",
+      "repo": "https://github.com/danieljoseph96/mobile-chat-app"
+    }
+  ],
+  "achievements": [
+    "Certified Ethical Hacker (CEH) - 2024",
+    "Completed DRM Full Stack Developer Program",
+    "Winner, Mobile App Hackathon 2023"
+  ]
+}
