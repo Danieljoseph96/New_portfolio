@@ -1,3 +1,4 @@
+// === Color Variables ===
 $primary:   #00ff99 !default;
 $secondary: #181818 !default;
 $success:   #90be6d;
@@ -12,7 +13,7 @@ $light:     #222 !default;
   --accent-color: #00ff99;
 }
 
-// Base
+// === Base ===
 body {
   font-family: 'Fira Mono', 'Roboto Mono', 'Consolas', monospace;
   background-color: var(--dark-color);
@@ -26,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 0 8px #00ff99;
 }
 
-// Navbar
+// === Navbar ===
 .navbar, .main-footer {
   background: var(--secondary-color) !important;
   border-bottom: 2px solid var(--primary-color);
@@ -45,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: none;
 }
 
-// Hero Section
+// === Hero Section ===
 #home {
   background: linear-gradient(135deg, #181818 0%, #222 100%);
   position: relative;
@@ -63,19 +64,17 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   @keyframes glitch {
-    0% { text-shadow: 2px 2px 0 #fff2, -2px -2px 0 #fff2, 0 0 8px #00ff99; }
+    0%, 100% { text-shadow: 2px 2px 0 #fff2, -2px -2px 0 #fff2, 0 0 8px #00ff99; }
     20% { text-shadow: 4px 0 0 #00ff99, -4px 0 0 #fff2; }
     40% { text-shadow: 0 4px 0 #fff2, 0 -4px 0 #00ff99; }
     60% { text-shadow: 2px -2px 0 #fff2, -2px 2px 0 #00ff99; }
     80% { text-shadow: -4px 0 0 #fff2, 4px 0 0 #00ff99; }
-    100% { text-shadow: 2px 2px 0 #fff2, -2px -2px 0 #fff2, 0 0 8px #00ff99; }
   }
 
   .intro-text {
     font-size: 1.25rem;
     max-width: 600px;
-    color: #00ff99;
-    z-index: 1;
+    color: var(--primary-color);
     font-family: 'Fira Mono', monospace;
   }
 
@@ -87,13 +86,14 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Fira Mono', monospace;
     border-radius: 50px;
     transition: all 0.3s ease;
-    z-index: 1;
+
     &:hover {
       background-color: #fff !important;
       color: var(--primary-color) !important;
       box-shadow: 0 0 16px #00ff99;
     }
   }
+
   .btn-outline-primary {
     background: transparent !important;
     color: var(--primary-color) !important;
@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// About Section
+// === About Section ===
 #about {
   background-color: var(--secondary-color);
   h2 {
@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Experience Section
+// === Experience Section ===
 #experience {
   background-color: var(--light-color);
   .timeline:after {
@@ -120,54 +120,118 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Projects Section
+// === Projects Section (Terminal / Hacker Style) ===
 #projects {
-  .project-card {
-    background: var(--secondary-color);
+  background: var(--dark-color);
+  border-top: 1px solid var(--primary-color);
+
+  .terminal-card {
+    background-color: #0d0d0d;
     border: 1px solid var(--primary-color);
-    box-shadow: 0 0 12px #00ff9933;
-    .card-title {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.3);
+    transition: all 0.3s ease-in-out;
+    font-family: 'Fira Mono', monospace;
+    color: var(--primary-color);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #00ff99;
+    }
+
+    .terminal-header {
+      background: #111;
+      border-bottom: 1px solid var(--primary-color);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+
+      .terminal-dots {
+        display: flex;
+        gap: 5px;
+        margin-right: 10px;
+
+        span {
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          display: inline-block;
+
+          &:nth-child(1) { background: #ff5f56; }
+          &:nth-child(2) { background: #ffbd2e; }
+          &:nth-child(3) { background: #27c93f; }
+        }
+      }
+    }
+
+    .terminal-body {
+      padding: 15px;
+      font-size: 1rem;
+
+      img {
+        border: 1px solid var(--primary-color);
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 20px rgba(0, 255, 153, 0.2);
+      }
+    }
+
+    .terminal-prompt { color: var(--primary-color); }
+
+    .btn-terminal {
+      background-color: transparent;
+      border: 1px solid var(--primary-color);
       color: var(--primary-color);
-    }
-    .badge {
-      background-color: var(--primary-color);
-      color: var(--dark-color);
-    }
-    .card-img-top {
-      box-shadow: 0 0 24px #00ff9955;
+      font-family: 'Fira Mono', monospace;
+      margin-right: 8px;
+      margin-top: 5px;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: var(--primary-color);
+        color: black;
+        box-shadow: 0 0 10px #00ff99;
+      }
     }
   }
+
+  a.text-success:hover { text-shadow: 0 0 10px #00ff99; }
 }
 
-// Achievements Section
+// === Achievements Section ===
 #achievements {
   background: var(--light-color);
+
   .card {
     background: var(--secondary-color);
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+
     .card-title, .card-text {
       color: var(--primary-color);
     }
   }
 }
 
-// Contact Section
+// === Contact Section ===
 #contact {
   .card {
     background: var(--secondary-color);
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
   }
+
   .form-label {
     color: var(--primary-color);
     font-family: 'Fira Mono', monospace;
   }
+
   .form-control, textarea {
     background: #222;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     font-family: 'Fira Mono', monospace;
+
     &:focus {
       box-shadow: 0 0 8px #00ff99;
       border-color: var(--primary-color);
@@ -175,13 +239,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Footer
+// === Footer ===
 .main-footer {
   background-color: var(--secondary-color);
   color: var(--primary-color);
+
   .social-links a {
     color: var(--primary-color) !important;
     text-shadow: 0 0 8px #00ff99;
+
     &:hover {
       color: #fff !important;
       text-shadow: 0 0 16px #00ff99;
@@ -189,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Scrollbar styling
+// === Scrollbar ===
 ::-webkit-scrollbar {
   width: 8px;
   background: var(--secondary-color);
@@ -197,90 +263,4 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 4px;
-}
-
-// === Terminal/Hacker Theme Enhancements ===
-
-// Terminal Card Style
-.terminal-card {
-  background: #111 !important;
-  border: 2px solid #00ff99 !important;
-  border-radius: 8px;
-  box-shadow: 0 0 24px #00ff9955;
-  font-family: 'Fira Mono', 'Roboto Mono', monospace;
-  color: #00ff99;
-  margin-bottom: 2rem;
-  overflow: hidden;
-}
-
-.terminal-header {
-  background: linear-gradient(90deg, #00ff99 0%, #181818 100%);
-  color: #111;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  border-bottom: 2px solid #00ff99;
-  .terminal-dots {
-    display: flex;
-    gap: 0.3rem;
-    margin-right: 1rem;
-    span {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #00ff99;
-      opacity: 0.7;
-    }
-  }
-}
-
-// Terminal Prompt and Typing
-.terminal-body {
-  background: #111;
-  color: #00ff99;
-  font-family: 'Fira Mono', monospace;
-  font-size: 1.2rem;
-  padding: 2rem 1.5rem;
-  min-height: 220px;
-  white-space: pre-line;
-}
-
-.terminal-prompt {
-  color: #00ff99;
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-.terminal-cursor {
-  display: inline-block;
-  width: 1ch;
-  color: #00ff99;
-  background: transparent;
-  animation: blink 1s steps(2, start) infinite;
-}
-
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-// Buttons as Terminal Commands
-.btn-terminal {
-  background: transparent !important;
-  color: #00ff99 !important;
-  border: 1px solid #00ff99 !important;
-  font-family: 'Fira Mono', monospace;
-  border-radius: 2px;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  transition: background 0.2s, color 0.2s;
-  &:hover {
-    background: #00ff99 !important;
-    color: #111 !important;
-    box-shadow: 0 0 8px #00ff99;
-  }
 }
