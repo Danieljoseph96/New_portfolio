@@ -1,0 +1,320 @@
+:root {
+  --primary-color: #00ff99;
+  --secondary-color: #181818;
+  --dark-color: #111;
+  --light-color: #222;
+  --accent-color: #00ff99;
+  --navbar-height: 70px;
+  --footer-height: 60px;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes cardFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+@keyframes blink {
+  0%, 50%, 100% {
+    border-color: transparent;
+  }
+  25%, 75% {
+    border-color: #0f0;
+  }
+}
+body {
+  font-family: "Fira Mono", "Roboto Mono", "Consolas", monospace;
+  background-color: #111;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+  width: 100dvw;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  height: var(--navbar-height);
+  background-color: #181818;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+main {
+  margin-top: var(--navbar-height);
+  min-height: calc(100dvh - var(--navbar-height) - var(--footer-height));
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+main .row.align-items-stretch {
+  height: 100%;
+  min-height: calc(100dvh - var(--navbar-height) - var(--footer-height));
+}
+main #Left_div, main #Right_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+main .card-sequence {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+main .card-sequence .card-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgb(128, 0, 0) !important;
+  text-align: center;
+  overflow-y: auto;
+}
+main .card-sequence .card-item.active {
+  display: flex;
+  animation: cardFadeIn 0.6s ease forwards;
+}
+main .card-sequence .card-item.fade-out {
+  animation: cardFadeOut 0.6s ease forwards;
+}
+main .card-sequence .card-item#Home_id {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #000 0%, #222 100%);
+  color: #00ff99;
+}
+main .card-sequence .card-item#project_id .d-flex, main .card-sequence .card-item#Certificate_id .d-flex, main .card-sequence .card-item#Gallery_id .d-flex, main .card-sequence .card-item#Blog_id .d-flex {
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+}
+main .card-sequence .card-item#project_id .project-card,
+main .card-sequence .card-item#project_id .blog-card, main .card-sequence .card-item#Certificate_id .project-card,
+main .card-sequence .card-item#Certificate_id .blog-card, main .card-sequence .card-item#Gallery_id .project-card,
+main .card-sequence .card-item#Gallery_id .blog-card, main .card-sequence .card-item#Blog_id .project-card,
+main .card-sequence .card-item#Blog_id .blog-card {
+  background: rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+}
+main .card-sequence .card-item#project_id .project-card:hover,
+main .card-sequence .card-item#project_id .blog-card:hover, main .card-sequence .card-item#Certificate_id .project-card:hover,
+main .card-sequence .card-item#Certificate_id .blog-card:hover, main .card-sequence .card-item#Gallery_id .project-card:hover,
+main .card-sequence .card-item#Gallery_id .blog-card:hover, main .card-sequence .card-item#Blog_id .project-card:hover,
+main .card-sequence .card-item#Blog_id .blog-card:hover {
+  background: rgba(0, 255, 153, 0.1);
+  transform: translateY(-2px);
+}
+main .card-sequence .card-item#project_id .certificate-img,
+main .card-sequence .card-item#project_id .gallery-img, main .card-sequence .card-item#Certificate_id .certificate-img,
+main .card-sequence .card-item#Certificate_id .gallery-img, main .card-sequence .card-item#Gallery_id .certificate-img,
+main .card-sequence .card-item#Gallery_id .gallery-img, main .card-sequence .card-item#Blog_id .certificate-img,
+main .card-sequence .card-item#Blog_id .gallery-img {
+  width: 150px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #00ff99;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+main .card-sequence .card-item#project_id .certificate-img:hover,
+main .card-sequence .card-item#project_id .gallery-img:hover, main .card-sequence .card-item#Certificate_id .certificate-img:hover,
+main .card-sequence .card-item#Certificate_id .gallery-img:hover, main .card-sequence .card-item#Gallery_id .certificate-img:hover,
+main .card-sequence .card-item#Gallery_id .gallery-img:hover, main .card-sequence .card-item#Blog_id .certificate-img:hover,
+main .card-sequence .card-item#Blog_id .gallery-img:hover {
+  transform: scale(1.05);
+}
+main #Right_div #terminal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000;
+  border: 2px solid #00ff99;
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: #00ff99;
+  font-family: "Fira Mono", monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  box-shadow: 0 0 10px #00ff99;
+  width: 100%;
+}
+main #Right_div #terminal pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+#cursor {
+  border-right: 2px solid #0f0;
+  animation: blink 1s step-end infinite;
+}
+
+footer {
+  height: var(--footer-height);
+  color: #00ff99;
+  background-color: #181818;
+  border-top: 1px solid #00ff99;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+section#home {
+  width: 100%;
+  height: 100%;
+}
+section#home .container-fluid {
+  height: 100%;
+  padding: 0;
+}
+
+.card-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+.card-controls .card-nav-btn {
+  background: rgba(0, 255, 153, 0.2);
+  border: 1px solid #00ff99;
+  color: #00ff99;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.card-controls .card-nav-btn.active {
+  background: #00ff99;
+}
+.card-controls .card-nav-btn:hover {
+  background: rgba(0, 255, 153, 0.5);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 60px;
+    --footer-height: 50px;
+  }
+  main .row.align-items-stretch {
+    flex-direction: column;
+  }
+  main #Left_div, main #Right_div {
+    height: 50vh;
+    min-height: 300px;
+  }
+  main #Left_div {
+    border-right: none !important;
+    border-bottom: 2px solid #00ff99 !important;
+  }
+  main #Right_div {
+    border-left: none !important;
+    border-top: 2px solid #00ff99 !important;
+  }
+  main .card-sequence .card-item#Home_id {
+    font-size: 2rem;
+  }
+  main .card-sequence .card-item .certificate-img,
+  main .card-sequence .card-item .gallery-img {
+    width: 120px;
+    height: 80px;
+  }
+}
+@media (max-width: 576px) {
+  :root {
+    --navbar-height: 55px;
+    --footer-height: 45px;
+  }
+  main .card-sequence .card-item#Home_id {
+    font-size: 1.5rem;
+  }
+  main .card-sequence .card-item .project-card,
+  main .card-sequence .card-item .blog-card {
+    padding: 1rem !important;
+  }
+  main .card-sequence .card-item .project-card h2, main .card-sequence .card-item .project-card h3,
+  main .card-sequence .card-item .blog-card h2,
+  main .card-sequence .card-item .blog-card h3 {
+    font-size: 1.2rem;
+  }
+  main .card-sequence .card-item .certificate-img,
+  main .card-sequence .card-item .gallery-img {
+    width: 100px;
+    height: 70px;
+  }
+  main #terminal {
+    padding: 1rem !important;
+    font-size: 0.875rem;
+  }
+}
+.cursor-animation {
+  border-right: 2px solid #0f0;
+  animation: blink 1s step-end infinite;
+}
+
+.terminal div {
+  margin-bottom: 0.5rem;
+}
+.terminal div:last-child {
+  margin-bottom: 0;
+}
+.terminal .text-success {
+  color: #00ff99 !important;
+}
+.terminal .text-warning {
+  color: #ffd700 !important;
+}
+.terminal .text-danger {
+  color: #ff4444 !important;
+}
+.terminal .text-info {
+  color: #00ffff !important;
+}
+
+.ms-2 {
+  margin-left: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}/*# sourceMappingURL=style.css.map */
