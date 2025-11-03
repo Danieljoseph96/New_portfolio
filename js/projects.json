@@ -1,0 +1,19 @@
+[
+    {
+        "id":1,
+        "name":"BLA APP",
+        "content":"sample ",
+        "lang":"python Django",
+        "image":["../image/img.jpg","../image/img.jpg","../image/img.jpg"],
+        "link":" ",
+        "video":"  "
+    }, {
+        "id":1,
+        "name":"React TMDB",
+        "content":"sample ",
+        "lang":"react",
+        "image":["../image/img.jpg","../image/img.jpg","../image/img.jpg"],
+        "link":" ",
+        "video":"  "
+    }
+]

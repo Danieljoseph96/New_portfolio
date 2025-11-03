@@ -1,0 +1,193 @@
+
+// main them
+
+/* Bootstrap Custom Theme + Fix */
+:root {
+  --header-height: 70px;
+  --main-bg: #17e4c2;
+  --main-text: #000;
+}
+
+/* Custom main section styling */
+main {
+  position: relative;
+  background-color: var(--main-bg) !important;
+  color: var(--main-text);
+
+  
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sections inside main */
+main section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  min-height: calc(100dvh - var(--header-height));
+}
+
+/* Optional hover theme effect */
+main section:hover {
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Custom Bootstrap override example */
+.navbar {
+  background-color: #0a0a0a !important;
+  border-bottom: 2px solid var(--main-bg);
+}
+
+.nav-link.active {
+  color: var(--main-bg) !important;
+  font-weight: 600;
+}
+
+
+//end main
+
+/* Floating circular button */
+.circle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  background-color: #0d6efd;
+  color: #fff;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  z-index: 1050;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #0b5ed7;
+  }
+}
+
+/* Expanding Menu */
+.circle-menu {
+  position: fixed;
+  bottom: 85px;
+  right: 20px;
+  background-color: #212529;
+  color: #fff;
+  border-radius: 15px;
+  padding: 10px 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  z-index: 1049;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 6px 0;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      &:hover {
+        color: #0d6efd;
+      }
+    }
+  }
+
+  &.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: all;
+  }
+}
+
+
+.terminal {
+  background-color: $terminal-bg;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px $shadow-color;
+  height: 300px;
+  overflow-y: auto;
+  &
+
+  &-header {
+    background: $terminal-header-bg;
+    padding: 8px 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      &.red { background: $dot-red; }
+      &.yellow { background: $dot-yellow; }
+      &.green { background: $dot-green; }
+    }
+  }
+
+  .cmd-line::before {
+    content: ">";
+    margin-right: 6px;
+    color: $accent;
+  }
+}
+
+
+
+/* hide elements by default */
+#linux,
+#normal_themes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s ease;
+}
+
+/* hidden state */
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* visible state */
+.show {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+
+.visible-img {
+  filter: brightness(1.1) contrast(1.05); /* makes image a bit clearer */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35); /* soft shadow shade */
+  transition: all 0.4s ease-in-out;
+}
+.visible-img:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.55); /* stronger on hover */
+  transform: scale(1.02);
+}
