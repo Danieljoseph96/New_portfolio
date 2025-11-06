@@ -1,40 +1,26 @@
-// ===== Existing Code (Keep) =====
-const mainbox = document.getElementById("GUI");
-const linuxbox = document.getElementById("Terminal");
-
-function toggleMenu() {
-  document.getElementById('RoboBox').classList.toggle('show');
-}
-
-function toggleTerminal() {
-  document.getElementById('linux').classList.toggle('show');
-  document.getElementById('normal_themes').classList.toggle('hide');
-}
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   loadContent();
-  initTerminal(); // <-- Added: Initialize terminal when DOM is ready
+  initTerminal();
 });
-//----------------------------------------------------------------------
 
 // ===== Content Loader =====
 async function loadContent() {
   try {
-    const [projects, blogs] = await Promise.all([
-      fetchJSON('js/projects.json'),
-      fetchJSON('js/blog.json')
-    ]);
-
-    renderProjects(projects);
-    renderBlogs(blogs);
+    const profileData = await fetchJSON('js/my_profile.json');
+    
+    // Update page content with profile data
+    updatePersonalInfo(profileData.resume.personal);
+    updateSummary(profileData.resume.summary);
+    renderSkills(profileData.resume.skills);
+    renderExperience(profileData.resume.experience);
+    renderEducation(profileData.resume.education);
+    renderCertifications(profileData.resume.certifications);
+    renderProjects(profileData.resume.projects);
+    renderBlogs(profileData.resume.blog);
+    
   } catch (err) {
     console.error('Failed to load content:', err);
-    document.getElementById('projectRow').innerHTML =
-      '<div class="col-12 text-center text-danger">Could not load Projects</div>';
-    document.getElementById('blogRow').innerHTML =
-      '<div class="col-12 text-center text-danger">Could not load Blogs</div>';
+    showErrorMessages();
   }
 }
 
@@ -45,7 +31,206 @@ async function fetchJSON(url) {
   return resp.json();
 }
 
-// Render Projects with Expandable Modal and Staggered Animation
+// ===== Content Renderers =====
+
+// Update personal information
+function updatePersonalInfo(personal) {
+  // Update name in home section
+  const heading = document.getElementById('heading');
+  if (heading) {
+    heading.textContent = `${personal.name.first.toUpperCase()} ${personal.name.middle.toUpperCase()} ${personal.name.last.toUpperCase()}`;
+  }
+  
+  // Update title
+  const titleElement = document.querySelector('#home .lead');
+  if (titleElement) {
+    titleElement.textContent = personal.title;
+  }
+  
+  // Update contact info if contact section exists
+  updateContactInfo(personal.contact);
+}
+
+function updateContactInfo(contact) {
+
+ // console.log('Contact info:', contact);
+  
+}
+
+function updateSummary(summary) {
+  const aboutSection = document.querySelector('#about p');
+  if (aboutSection) {
+    aboutSection.textContent = summary;
+  }
+}
+
+// Render Skills
+function renderSkills(skills) {
+  const skillsContainer = document.querySelector('#skills .row');
+  if (!skillsContainer) return;
+  
+  // Clear existing content
+  skillsContainer.innerHTML = '';
+  
+  // Programming Skills
+  if (skills.programming && skills.programming.length > 0) {
+    skillsContainer.appendChild(createSkillCard('Programming', skills.programming, 'code'));
+  }
+  
+  // Frontend Skills
+  if (skills.frontend) {
+    const frontendSkills = [
+      ...(skills.frontend.languages || []),
+      ...(skills.frontend.frameworks || []),
+      ...(skills.frontend.styling || [])
+    ];
+    if (frontendSkills.length > 0) {
+      skillsContainer.appendChild(createSkillCard('Frontend', frontendSkills, 'layout-wtf'));
+    }
+  }
+  
+  // Backend Skills
+  if (skills.backend) {
+    const backendSkills = [
+      ...(skills.backend.frameworks || []),
+      ...(skills.backend.concepts || [])
+    ];
+    if (backendSkills.length > 0) {
+      skillsContainer.appendChild(createSkillCard('Backend', backendSkills, 'server'));
+    }
+  }
+  
+  // Database Skills
+  if (skills.databases) {
+    const dbSkills = [
+      ...(skills.databases.relational || []),
+      ...(skills.databases.cloud || [])
+    ];
+    if (dbSkills.length > 0) {
+      skillsContainer.appendChild(createSkillCard('Databases', dbSkills, 'database'));
+    }
+  }
+  
+  // Cybersecurity Skills
+  if (skills.cybersecurity) {
+    const cyberSkills = [
+      ...(skills.cybersecurity.tools || []),
+      ...(skills.cybersecurity.certifications || []),
+      ...(skills.cybersecurity.platforms || [])
+    ];
+    if (cyberSkills.length > 0) {
+      skillsContainer.appendChild(createSkillCard('Cybersecurity', cyberSkills, 'shield-lock'));
+    }
+  }
+  
+  // DevOps Skills
+  if (skills.devops) {
+    const devopsSkills = [
+      ...(skills.devops.tools || []),
+      ...(skills.devops.deployment || [])
+    ];
+    if (devopsSkills.length > 0) {
+      skillsContainer.appendChild(createSkillCard('DevOps', devopsSkills, 'gear'));
+    }
+  }
+}
+
+function createSkillCard(title, skills, icon) {
+  const col = document.createElement('div');
+  col.className = 'col-md-6 col-lg-4';
+  
+  col.innerHTML = `
+    <div class="card bg-secondary border-0 h-100">
+      <div class="card-body">
+        <h3 class="h5 card-title text-info">
+          <i class="bi bi-${icon} me-2"></i>${title}
+        </h3>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          ${skills.map(skill => `<span class="badge bg-dark">${escapeHtml(skill)}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  
+  return col;
+}
+
+// Render Experience
+function renderExperience(experience) {
+  const timeline = document.querySelector('.timeline');
+  if (!timeline) return;
+  
+  timeline.innerHTML = '';
+  
+  experience.forEach(exp => {
+    const timelineItem = document.createElement('div');
+    timelineItem.className = 'timeline-item';
+    
+    timelineItem.innerHTML = `
+      <div class="timeline-date">${exp.period.start} – ${exp.period.end}</div>
+      <div class="timeline-content">
+        <h3 class="h5">${escapeHtml(exp.role)}</h3>
+        <p class="text-muted">${escapeHtml(exp.company)}</p>
+        <ul>
+          ${exp.responsibilities.map(resp => `<li>${escapeHtml(resp)}</li>`).join('')}
+        </ul>
+        ${exp.technologies && exp.technologies.length > 0 ? `
+          <div class="mt-3">
+            <strong>Technologies:</strong>
+            <div class="d-flex flex-wrap gap-1 mt-1">
+              ${exp.technologies.map(tech => `<span class="badge bg-info text-dark">${escapeHtml(tech)}</span>`).join('')}
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    `;
+    
+    timeline.appendChild(timelineItem);
+  });
+}
+
+// Render Education
+function renderEducation(education) {
+  const educationContainer = document.querySelector('#about .education-list');
+  if (!educationContainer) return;
+  
+  educationContainer.innerHTML = '';
+  
+  education.forEach(edu => {
+    const eduItem = document.createElement('li');
+    eduItem.className = 'mb-2';
+    
+    eduItem.innerHTML = `
+      <strong>${escapeHtml(edu.degree)}</strong><br>
+      ${escapeHtml(edu.institution)} • ${edu.year}
+      ${edu.status === 'ongoing' ? '<span class="badge bg-warning text-dark ms-2">Ongoing</span>' : ''}
+    `;
+    
+    educationContainer.appendChild(eduItem);
+  });
+}
+
+// Render Certifications
+function renderCertifications(certifications) {
+  const certContainer = document.querySelector('#about .certifications-list');
+  if (!certContainer) return;
+  
+  certContainer.innerHTML = '';
+  
+  certifications.forEach(cert => {
+    const certItem = document.createElement('li');
+    certItem.className = 'mb-2';
+    
+    certItem.innerHTML = `
+      ${escapeHtml(cert.name)} – ${escapeHtml(cert.issuer)}
+      ${cert.year ? ` • ${cert.year}` : ''}
+    `;
+    
+    certContainer.appendChild(certItem);
+  });
+}
+
+// Render Projects (Updated for new JSON structure)
 function renderProjects(projects) {
   const row = document.getElementById('projectRow');
   if (!row) return;
@@ -60,27 +245,33 @@ function renderProjects(projects) {
     
     col.innerHTML = `
       <div class="card bg-dark text-light h-100 shadow-sm border border-info overflow-hidden project-card hover-scale">
-        <div class="card-image-container position-relative">
-          <img 
-            src="${project.image?.[0] || 'https://via.placeholder.com/400x200?text=No+Image'}" 
-            class="card-img-top img-fluid object-fit-cover"
-            alt="${escapeHtml(project.id)}"
-            style="height: 200px; object-fit: cover; cursor: pointer; transition: transform 0.3s ease;"
-          />
-          <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center opacity-0" style="transition: opacity 0.3s ease;">
-            <span class="text-info fs-1">👁️</span>
-          </div>
-        </div>
         <div class="card-body text-center d-flex flex-column">
           <h5 class="card-title text-info">${escapeHtml(project.name)}</h5>
           <p class="card-text text-secondary flex-grow-1">
-            ${escapeHtml(project.content || 'No description available.')}
+            ${escapeHtml(project.description || 'No description available.')}
           </p>
+          <div class="mt-3">
+            <div class="d-flex flex-wrap gap-1 justify-content-center mb-2">
+              ${project.technologies.map(tech => `<span class="badge bg-info text-dark">${escapeHtml(tech)}</span>`).join('')}
+            </div>
+          </div>
           <div class="mt-auto">
-            ${project.link ? `
-              <a href="${project.link}" target="_blank" class="btn btn-outline-success btn-sm">
-                Live Demo
-              </a>
+            <button onclick="openProjectModal(${index})" class="btn btn-outline-info btn-sm me-2">
+              View Details
+            </button>
+            ${project.demo || project.repository ? `
+              <div class="mt-2">
+                ${project.demo ? `
+                  <a href="${project.demo}" target="_blank" class="btn btn-outline-success btn-sm me-1">
+                    Live Demo
+                  </a>
+                ` : ''}
+                ${project.repository ? `
+                  <a href="${project.repository}" target="_blank" class="btn btn-outline-secondary btn-sm">
+                    Code
+                  </a>
+                ` : ''}
+              </div>
             ` : ''}
           </div>
         </div>
@@ -96,30 +287,21 @@ function renderProjects(projects) {
 
     // Add hover effects
     const card = col.querySelector('.project-card');
-    const img = col.querySelector('img');
-    const overlay = col.querySelector('.image-overlay');
     
     card.addEventListener('mouseenter', () => {
       card.style.transform = 'translateY(-5px)';
-      img.style.transform = 'scale(1.05)';
-      overlay.style.opacity = '1';
     });
     
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'translateY(0)';
-      img.style.transform = 'scale(1)';
-      overlay.style.opacity = '0';
     });
-
-    // Click on image to open modal
-    img.addEventListener('click', () => openProjectModal(index));
   });
 
   // Store projects globally for modal access
   window.projectsData = projects;
 }
 
-// Render Blogs with Expandable Modal and Staggered Animation
+// Render Blogs (Updated for new JSON structure)
 function renderBlogs(blogs) {
   const row = document.getElementById('blogRow');
   if (!row) return;
@@ -136,17 +318,24 @@ function renderBlogs(blogs) {
       <div class="card bg-light text-dark h-100 shadow-sm border border-primary overflow-hidden blog-card hover-scale">
         <div class="card-body d-flex flex-column">
           <div class="blog-header mb-3">
-            <h5 class="card-title text-primary">${escapeHtml(blog.name)}</h5>
-            ${blog.date ? `<small class="text-muted publish-date">Published: ${formatDate(blog.date)}</small>` : ''}
+            <h5 class="card-title text-primary">${escapeHtml(blog.title)}</h5>
+            ${blog.published ? `<small class="text-muted publish-date">Published: ${formatDate(blog.published)}</small>` : ''}
           </div>
           <p class="card-text text-muted flex-grow-1">
-            ${escapeHtml(blog.Content || 'No summary available.')}
+            ${escapeHtml(blog.description || 'No summary available.')}
           </p>
+          <div class="mt-3">
+            <div class="d-flex flex-wrap gap-1 mb-2">
+              ${blog.tags.map(tag => `<span class="badge bg-primary">${escapeHtml(tag)}</span>`).join('')}
+            </div>
+          </div>
           <div class="mt-auto">
-           
-            ${blog.link ? `
-              <a href="${blog.link}" target="_blank" class="btn btn-outline-success btn-sm">
-                Read Full
+            <button onclick="openBlogModal(${index})" class="btn btn-outline-primary btn-sm me-2">
+              Read More
+            </button>
+            ${blog.url ? `
+              <a href="${blog.url}" target="_blank" class="btn btn-outline-success btn-sm">
+                Visit Blog
               </a>
             ` : ''}
           </div>
@@ -177,21 +366,12 @@ function renderBlogs(blogs) {
   window.blogsData = blogs;
 }
 
-// Project Modal Function - FIXED CLOSE BUTTONS
+// ===== Modal Functions =====
+
+// Project Modal Function (Updated for new JSON structure)
 function openProjectModal(index) {
   const project = window.projectsData[index];
   if (!project) return;
-
-  // Show loading state on button
-  const buttons = document.querySelectorAll(`.expand-btn`);
-  buttons.forEach(btn => {
-    const text = btn.querySelector('.btn-text');
-    const spinner = btn.querySelector('.btn-spinner');
-    if (text && spinner) {
-      text.classList.add('d-none');
-      spinner.classList.remove('d-none');
-    }
-  });
 
   // Remove existing modals
   const existingModals = document.querySelectorAll('.modal-backdrop, #projectModal, #blogModal');
@@ -206,36 +386,22 @@ function openProjectModal(index) {
         <div class="modal-content bg-dark text-light border border-info modal-glow">
           <div class="modal-header border-info">
             <h5 class="modal-title text-info" id="${modalId}Label">
-              <i class="fas fa-rocket me-2"></i>${escapeHtml(project.id)}
+              <i class="bi bi-rocket-takeoff me-2"></i>${escapeHtml(project.name)}
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal('${modalId}')"></button>
           </div>
           <div class="modal-body">
-            ${project.image?.[0] ? `
-              <div class="text-center mb-4">
-                <img 
-                  src="${project.image[0]}" 
-                  class="img-fluid rounded shadow"
-                  alt="${escapeHtml(project.id)}"
-                  style="max-height: 300px; width: auto;"
-                  onload="this.style.opacity='1'"
-                  style="opacity:0; transition: opacity 0.3s ease;"
-                />
-              </div>
-            ` : ''}
-            
             <div class="info-section mb-4">
               <h6 class="text-warning section-title">
-                <i class="fas fa-info-circle me-2"></i>Description
+                <i class="bi bi-info-circle me-2"></i>Description
               </h6>
-              <p class="section-content">${escapeHtml((project.content || 'No description available.').slice(0,300))}
-</p>
+              <p class="section-content">${escapeHtml(project.description || 'No description available.')}</p>
             </div>
 
-            ${project.technologies ? `
+            ${project.technologies && project.technologies.length > 0 ? `
               <div class="info-section mb-4">
                 <h6 class="text-warning section-title">
-                  <i class="fas fa-code me-2"></i>Technologies
+                  <i class="bi bi-code me-2"></i>Technologies
                 </h6>
                 <div class="d-flex flex-wrap gap-2">
                   ${project.technologies.map(tech => 
@@ -245,10 +411,10 @@ function openProjectModal(index) {
               </div>
             ` : ''}
 
-            ${project.features ? `
+            ${project.features && project.features.length > 0 ? `
               <div class="info-section mb-4">
                 <h6 class="text-warning section-title">
-                  <i class="fas fa-star me-2"></i>Key Features
+                  <i class="bi bi-stars me-2"></i>Key Features
                 </h6>
                 <ul class="feature-list">
                   ${project.features.map(feature => 
@@ -258,44 +424,46 @@ function openProjectModal(index) {
               </div>
             ` : ''}
 
-            ${project.github || project.demo || project.link ? `
+            ${project.highlights && project.highlights.length > 0 ? `
               <div class="info-section mb-4">
                 <h6 class="text-warning section-title">
-                  <i class="fas fa-link me-2"></i>Links
+                  <i class="bi bi-lightning me-2"></i>Highlights
+                </h6>
+                <ul class="feature-list">
+                  ${project.highlights.map(highlight => 
+                    `<li class="feature-item">${escapeHtml(highlight)}</li>`
+                  ).join('')}
+                </ul>
+              </div>
+            ` : ''}
+
+            ${project.repository || project.demo ? `
+              <div class="info-section mb-4">
+                <h6 class="text-warning section-title">
+                  <i class="bi bi-link me-2"></i>Links
                 </h6>
                 <div class="d-flex gap-2 flex-wrap">
-                  ${project.github ? `
-                    <a href="${project.github}" target="_blank" class="btn btn-outline-secondary btn-sm">
-                      <i class="fab fa-github me-1"></i> GitHub
+                  ${project.repository ? `
+                    <a href="${project.repository}" target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="bi bi-github me-1"></i> GitHub
                     </a>
                   ` : ''}
                   ${project.demo ? `
                     <a href="${project.demo}" target="_blank" class="btn btn-outline-success btn-sm">
-                      <i class="fas fa-external-link-alt me-1"></i> Live Demo
-                    </a>
-                  ` : ''}
-                  ${project.link && !project.demo ? `
-                    <a href="${project.link}" target="_blank" class="btn btn-outline-success btn-sm">
-                      <i class="fas fa-external-link-alt me-1"></i> View Project
+                      <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
                     </a>
                   ` : ''}
                 </div>
               </div>
             ` : ''}
-
-            ${project.date ? `
-              <div class="text-muted small text-center">
-                <i class="fas fa-calendar me-1"></i>Created: ${formatDate(project.date)}
-              </div>
-            ` : ''}
           </div>
           <div class="modal-footer border-info">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="closeModal('${modalId}')">
-              <i class="fas fa-times me-1"></i>Close
+              <i class="bi bi-x me-1"></i>Close
             </button>
-            ${project.link ? `
-              <a href="${project.link}" target="_blank" class="btn btn-outline-info">
-                <i class="fas fa-external-link-alt me-1"></i>Open Project
+            ${project.demo ? `
+              <a href="${project.demo}" target="_blank" class="btn btn-outline-info">
+                <i class="bi bi-box-arrow-up-right me-1"></i>Open Project
               </a>
             ` : ''}
           </div>
@@ -307,29 +475,12 @@ function openProjectModal(index) {
   // Add modal to body
   document.body.insertAdjacentHTML('beforeend', modalHtml);
 
-  // Initialize and show modal with delay for animation
+  // Initialize and show modal
   setTimeout(() => {
     const modalElement = document.getElementById(modalId);
     if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement, {
-        keyboard: true,
-        backdrop: true
-      });
-      
+      const modal = new bootstrap.Modal(modalElement);
       modal.show();
-
-      // Reset button states
-      setTimeout(() => {
-        const buttons = document.querySelectorAll(`.expand-btn`);
-        buttons.forEach(btn => {
-          const text = btn.querySelector('.btn-text');
-          const spinner = btn.querySelector('.btn-spinner');
-          if (text && spinner) {
-            text.classList.remove('d-none');
-            spinner.classList.add('d-none');
-          }
-        });
-      }, 500);
 
       // Handle modal hidden event
       modalElement.addEventListener('hidden.bs.modal', function() {
@@ -337,34 +488,17 @@ function openProjectModal(index) {
           if (document.body.contains(modalElement)) {
             modalElement.remove();
           }
-          // Remove backdrop
-          const backdrops = document.querySelectorAll('.modal-backdrop');
-          backdrops.forEach(backdrop => backdrop.remove());
-          // Remove modal-open class
-          document.body.classList.remove('modal-open');
-          document.body.style.overflow = '';
-          document.body.style.paddingRight = '';
+          cleanupModal();
         }, 300);
       });
     }
   }, 100);
 }
 
-// Blog Modal Function - FIXED CLOSE BUTTONS
+// Blog Modal Function (Updated for new JSON structure)
 function openBlogModal(index) {
   const blog = window.blogsData[index];
   if (!blog) return;
-
-  // Show loading state on button
-  const buttons = document.querySelectorAll(`.expand-btn`);
-  buttons.forEach(btn => {
-    const text = btn.querySelector('.btn-text');
-    const spinner = btn.querySelector('.btn-spinner');
-    if (text && spinner) {
-      text.classList.add('d-none');
-      spinner.classList.remove('d-none');
-    }
-  });
 
   // Remove existing modals
   const existingModals = document.querySelectorAll('.modal-backdrop, #projectModal, #blogModal');
@@ -373,22 +507,72 @@ function openBlogModal(index) {
   });
 
   const modalId = 'blogModal';
-  
+  const modalHtml = `
+    <div class="modal fade" id="${modalId}" tabindex="-1" aria-labelledby="${modalId}Label" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-light text-dark border border-primary">
+          <div class="modal-header border-primary">
+            <h5 class="modal-title text-primary" id="${modalId}Label">
+              <i class="bi bi-journal-text me-2"></i>${escapeHtml(blog.title)}
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal('${modalId}')"></button>
+          </div>
+          <div class="modal-body">
+            ${blog.published ? `
+              <div class="text-muted mb-3">
+                <i class="bi bi-calendar me-1"></i>Published: ${formatDate(blog.published)}
+              </div>
+            ` : ''}
+            
+            <div class="info-section mb-4">
+              <h6 class="text-primary section-title">
+                <i class="bi bi-card-text me-2"></i>Description
+              </h6>
+              <p class="section-content">${escapeHtml(blog.description)}</p>
+            </div>
+
+            <div class="info-section mb-4">
+              <h6 class="text-primary section-title">
+                <i class="bi bi-file-text me-2"></i>Content
+              </h6>
+              <p class="section-content">${escapeHtml(blog.content)}</p>
+            </div>
+
+            ${blog.tags && blog.tags.length > 0 ? `
+              <div class="info-section mb-4">
+                <h6 class="text-primary section-title">
+                  <i class="bi bi-tags me-2"></i>Tags
+                </h6>
+                <div class="d-flex flex-wrap gap-2">
+                  ${blog.tags.map(tag => `<span class="badge bg-primary">${escapeHtml(tag)}</span>`).join('')}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+          <div class="modal-footer border-primary">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="closeModal('${modalId}')">
+              <i class="bi bi-x me-1"></i>Close
+            </button>
+            ${blog.url ? `
+              <a href="${blog.url}" target="_blank" class="btn btn-primary">
+                <i class="bi bi-box-arrow-up-right me-1"></i>Read Full Article
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
   // Add modal to body
   document.body.insertAdjacentHTML('beforeend', modalHtml);
 
-  // Initialize and show modal with delay for animation
+  // Initialize and show modal
   setTimeout(() => {
     const modalElement = document.getElementById(modalId);
     if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement, {
-        keyboard: true,
-        backdrop: true
-      });
-      
+      const modal = new bootstrap.Modal(modalElement);
       modal.show();
-
-      
 
       // Handle modal hidden event
       modalElement.addEventListener('hidden.bs.modal', function() {
@@ -396,13 +580,7 @@ function openBlogModal(index) {
           if (document.body.contains(modalElement)) {
             modalElement.remove();
           }
-          // Remove backdrop
-          const backdrops = document.querySelectorAll('.modal-backdrop');
-          backdrops.forEach(backdrop => backdrop.remove());
-          // Remove modal-open class
-          document.body.classList.remove('modal-open');
-          document.body.style.overflow = '';
-          document.body.style.paddingRight = '';
+          cleanupModal();
         }, 300);
       });
     }
@@ -412,18 +590,33 @@ function openBlogModal(index) {
 // Close Modal Function
 function closeModal(modalId) {
   const modalElement = document.getElementById(modalId);
-  console.log("Erro")
   if (modalElement) {
     const modal = bootstrap.Modal.getInstance(modalElement);
     if (modal) {
       modal.hide();
+    } else {
+      modalElement.remove();
+      cleanupModal();
     }
   }
 }
 
+function cleanupModal() {
+  // Remove backdrop
+  const backdrops = document.querySelectorAll('.modal-backdrop');
+  backdrops.forEach(backdrop => backdrop.remove());
+  // Remove modal-open class
+  document.body.classList.remove('modal-open');
+  document.body.style.overflow = '';
+  document.body.style.paddingRight = '';
+}
+
+// ===== Utility Functions =====
+
 // Date formatting helper
 function formatDate(dateString) {
   try {
+    if (!dateString) return 'Not specified';
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   } catch (error) {
@@ -439,29 +632,32 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+// Error handling
+function showErrorMessages() {
+  const projectRow = document.getElementById('projectRow');
+  const blogRow = document.getElementById('blogRow');
+  
+  if (projectRow) {
+    projectRow.innerHTML = '<div class="col-12 text-center text-danger">Could not load Projects</div>';
+  }
+  if (blogRow) {
+    blogRow.innerHTML = '<div class="col-12 text-center text-danger">Could not load Blogs</div>';
+  }
+}
+
 // Make functions globally available
 window.openProjectModal = openProjectModal;
 window.openBlogModal = openBlogModal;
 window.closeModal = closeModal;
 window.formatDate = formatDate;
 window.escapeHtml = escapeHtml;
-///--------------------------------------------------------------------+
 
-//----------------------------------------------------------------------
-
-// HTML escape helper
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-// ===== NEW: Terminal Command System =====
+// ===== Terminal System =====
 function initTerminal() {
   const input = document.getElementById("terminal-input");
   const output = document.getElementById("terminal-output");
 
-  if (!input || !output) return; // if no terminal present, skip
+  if (!input || !output) return;
 
   const commands = {
     help: `
@@ -469,14 +665,18 @@ function initTerminal() {
       <ul>
         <li><b>help</b> - Show available commands</li>
         <li><b>about</b> - About me</li>
-        <li><b>blog</b> - Open my blog</li>
-        <li><b>list projects</b> - List all projects</li>
-        <li><b>list blogs</b> - List blog articles</li>
+        <li><b>skills</b> - Show technical skills</li>
+        <li><b>experience</b> - Show work experience</li>
+        <li><b>projects</b> - List projects</li>
+        <li><b>blog</b> - Show recent blogs</li>
+        <li><b>contact</b> - Contact information</li>
         <li><b>clear</b> - Clear terminal</li>
       </ul>
     `,
-    about: `Hi 👋, I'm <b>Daniel Joseph M L</b> — a web developer passionate about creating interactive experiences.`,
-    blog: `Opening blog... <a href="https://yourbloglink.com" target="_blank">Click here</a>`,
+    about: `👨‍💻 <b>Daniel Joseph M L</b> — Full Stack Developer & Cybersecurity Specialist with 5+ years of IT experience. CEH-certified and passionate about building secure web applications.`,
+    skills: `💻 <b>Technical Skills:</b> Python, JavaScript, Django, React, Cybersecurity tools, and more. Type 'help' for detailed categories.`,
+    experience: `💼 <b>Experience:</b> Technical Assistant at Election Commission of India, Computer Technician, and IT Apprentice with diverse technical expertise.`,
+    contact: `📧 <b>Contact:</b> mldaniel020@gmail.com | +91-8078036982 | GitHub: Danieljoseph96`
   };
 
   input.addEventListener("keydown", async (event) => {
@@ -490,8 +690,6 @@ function initTerminal() {
   });
 
   async function processCommand(cmd) {
-    // clear previous output before new response
-    output.innerHTML = "";
     const commandLine = `<div><span class="text-info">daniel@localhost:~$</span> ${cmd}</div>`;
     output.innerHTML += commandLine;
 
@@ -500,121 +698,56 @@ function initTerminal() {
       return;
     }
 
-    // Handle list commands
-    if (cmd === "list projects") {
+    // Handle commands that need data from JSON
+    if (cmd === "projects") {
       await listProjects();
       return;
     }
-    if (cmd === "list blogs") {
+    if (cmd === "blog") {
       await listBlogs();
       return;
     }
 
     // Default response
-    const response = commands[cmd] || `<div>Command not found: <b>${cmd}</b>. Type <b>help</b>.</div>`;
+    const response = commands[cmd] || `<div>Command not found: <b>${cmd}</b>. Type <b>help</b> for available commands.</div>`;
     output.innerHTML += `<div>${response}</div>`;
     output.scrollTop = output.scrollHeight;
   }
 
-  // Load and show projects
+  // Load and show projects from JSON
   async function listProjects() {
     try {
-      const res = await fetch("js/projects.json", { cache: "no-store" });
-      const data = await res.json();
-      let html = "<div class='fw-bold text-info mb-2'>Project List:</div><ul>";
-      data.forEach(p => {
-        html += `<li><b>${escapeHtml(p.id)}</b> — ${escapeHtml(p.description || 'No description')}</li>`;
+      const profileData = await fetchJSON('js/my_profile.json');
+      const projects = profileData.resume.projects;
+      
+      let html = "<div class='fw-bold text-info mb-2'>📁 Project List:</div><ul>";
+      projects.forEach(p => {
+        html += `<li><b>${escapeHtml(p.name)}</b> — ${escapeHtml(p.description)}</li>`;
       });
       html += "</ul>";
       output.innerHTML += html;
     } catch (err) {
-      output.innerHTML += `<div class="text-danger">Error loading projects.json</div>`;
+      output.innerHTML += `<div class="text-danger">Error loading projects</div>`;
     }
   }
 
-  // Load and show blogs
+  // Load and show blogs from JSON
   async function listBlogs() {
     try {
-      const res = await fetch("js/blog.json", { cache: "no-store" });
-      const data = await res.json();
-      let html = "<div class='fw-bold text-info mb-2'>Blog Articles:</div><ul>";
-      data.forEach(b => {
-        html += `<li><a href="${b.link}" target="_blank">${escapeHtml(b.title)}</a></li>`;
+      const profileData = await fetchJSON('js/my_profile.json');
+      const blogs = profileData.resume.blog;
+      
+      let html = "<div class='fw-bold text-info mb-2'>📝 Blog Articles:</div><ul>";
+      blogs.forEach(b => {
+        html += `<li><a href="${b.url}" target="_blank" class="text-info">${escapeHtml(b.title)}</a> — ${escapeHtml(b.description)}</li>`;
       });
       html += "</ul>";
       output.innerHTML += html;
     } catch (err) {
-      output.innerHTML += `<div class="text-danger">Error loading blog.json</div>`;
+      output.innerHTML += `<div class="text-danger">Error loading blogs</div>`;
     }
   }
 }
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("terminal-input");
-  const output = document.getElementById("terminal-output");
-  const infoPanel = document.getElementById("info-panel");
-
-  const commands = {
-    help: `
-      <div>Available commands:</div>
-      <ul>
-        <li><b>help</b> - Show available commands</li>
-        <li><b>about</b> - Show about section</li>
-        <li><b>projects</b> - List projects</li>
-        <li><b>blog</b> - Show recent blogs</li>
-        <li><b>clear</b> - Clear terminal</li>
-      </ul>
-    `,
-    about: `👨‍💻 Daniel Joseph M L — a creative web developer who builds responsive interfaces and interactive web tools.`,
-    blog: `Check my latest articles: <a href="https://yourbloglink.com" target="_blank">yourbloglink.com</a>`,
-  };
-
-  input.addEventListener("keydown", async (event) => {
-    if (event.key === "Enter") {
-      const cmd = input.value.trim().toLowerCase();
-      if (cmd) await runCommand(cmd);
-      input.value = "";
-    }
-  });
-
-  async function runCommand(cmd) {
-    // Print user input line
-    output.innerHTML += `<div><span class="text-info">daniel@localhost:~$</span> ${cmd}</div>`;
-    output.scrollTop = output.scrollHeight;
-
-    // Clear command
-    if (cmd === "clear") {
-      output.innerHTML = "";
-      infoPanel.innerHTML = `<p class="text-muted">Awaiting command...</p>`;
-      return;
-    }
-
-    // Handle built-in commands
-    if (commands[cmd]) {
-      const response = commands[cmd];
-      output.innerHTML += `<div>${response}</div>`;
-      updateInfoPanel(cmd, response);
-    } else if (cmd === "projects") {
-      const res = await fetch("js/projects.json");
-      const data = await res.json();
-      const projectList = data.map(p => `<li>${p.id} — ${p.description}</li>`).join("");
-      const html = `<ul>${projectList}</ul>`;
-      output.innerHTML += html;
-      updateInfoPanel("projects", html);
-    } else {
-      const notFound = `<div>Command not found: <b>${cmd}</b></div>`;
-      output.innerHTML += notFound;
-      updateInfoPanel("error", notFound);
-    }
-
-    output.scrollTop = output.scrollHeight;
-  }
-
-  function updateInfoPanel(type, content) {
-    infoPanel.classList.add("active");
-    infoPanel.innerHTML = `<div>${content}</div>`;
-    setTimeout(() => infoPanel.classList.remove("active"), 1500);
-  }
-});
+///loading animation to customise 

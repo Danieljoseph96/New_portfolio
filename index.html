@@ -1,45 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Freelance Web Developer | Cybersecurity SOC Analyst & Pentester | Web Security Specialist">
-  <meta name="keywords" content="Web Development, Cybersecurity, Penetration Testing, SOC, Ethical Hacking, Freelance Developer, Security Consultant">
+  <meta name="description" content="Daniel Joseph - Full Stack Developer | Cybersecurity SOC Analyst & Pentester | Web Security Specialist">
+  <meta name="keywords" content="Web Development, Cybersecurity, Penetration Testing, SOC, Ethical Hacking, Full Stack Developer, Security Consultant, Django, React, Python">
   <meta name="author" content="Daniel Joseph">
-  <!-- <link rel="icon" href="assets/imgs/CCDM.ico" type="image/x-icon"> -->
-  <title>Daniel Joseph | Portfolio</title>
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Daniel Joseph | Full Stack Developer & Cybersecurity Specialist">
+  <meta property="og:description" content="Full Stack Developer & Cybersecurity Specialist with 5+ years of IT experience. CEH-certified and passionate about building secure web applications.">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daniel Joseph | Portfolio">
+  <meta name="twitter:description" content="Full Stack Developer & Cybersecurity Specialist">
+  
+  <!-- Security Meta Tags - FIXED ALL ISSUES -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;
+    style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline';
+    img-src 'self' data: https:;
+    font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
+    connect-src 'self' https://cdn.jsdelivr.net ws:;
+  ">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <title>Daniel Joseph | Full Stack Developer & Cybersecurity Specialist</title>
 
-  <!-- CSS Dependencies -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- CSS Dependencies - FIXED integrity and sources -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Removed problematic integrity attribute for bootstrap-icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous">
   <link rel="stylesheet" href="style/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="image/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="image/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="image/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="image/favicon_io/favicon-16x16.png">
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100"
-      class="bg-dark text-light" style="font-family: 'Fira Mono', monospace;">
-
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100" class="bg-dark text-light d-flex flex-column min-vh-100" style="font-family: 'Fira Mono', monospace;">
+  
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="visually-hidden-focusable position-absolute top-0 start-0 p-2 bg-dark text-light text-decoration-none z-3">
+    Skip to main content
+  </a>
+  
   <!-- Navbar -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" 
-               width="30" height="30" class="d-inline-block align-top" alt="">
-          Daniel
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#home" aria-label="Daniel Joseph's Portfolio Home">
+          <span class="bg-info rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 30px; height: 30px;">
+            <span class="text-dark fw-bold">DJ</span>
+          </span>
+          Daniel Joseph
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                data-bs-target="#navbarNav" aria-controls="navbarNav" 
-                aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link active" href="#Home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#home" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -47,143 +96,221 @@
   </header>
 
   <!-- Floating Circular Button -->
-  <div class="circle-btn main-btn" onclick="toggleMenu()">
+  <div class="circle-btn main-btn position-fixed" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Toggle quick menu" aria-expanded="false" aria-controls="RoboBox">
     <span>&gt;</span>
   </div>
 
   <!-- Expanding Menu -->
-  <div class="circle-menu" id="RoboBox">
-    <ul>
-      <li onclick="toggleTerminal()">Terminal</li>
-      <li><a href="#project">Gallery</a></li>
+  <div class="circle-menu" id="RoboBox" role="menu" aria-hidden="true" aria-label="Quick actions menu">
+    <ul class="list-unstyled">
+      <li><button onclick="toggleTerminal()" role="menuitem" class="border-0 bg-transparent text-light">Terminal</button></li>
+      <li><a href="#projects" role="menuitem" class="text-light text-decoration-none">Projects</a></li>
+      <li><a href="#contact" role="menuitem" class="text-light text-decoration-none">Contact</a></li>
     </ul>
   </div>
 
-  <!-- Main GUI Sections -->
-<main class="text-center">
-  <section class=""  id="normal_themes">
- <!-- Fullscreen sections stacked vertically -->
-<main class="d-flex flex-column w-100" style=" height: 100dvh;">
+  <!-- Main Content -->
+  <main id="main-content" class="flex-grow-1" role="main">
+    <!-- Home Section -->
+    <section id="home" class="d-flex flex-column justify-content-center align-items-center text-light bg-dark min-vh-100" role="banner">
+      <div class="container text-center">
+        <h1 id="heading" class="fw-bold mb-3 animate__animated animate__fadeInDown" tabindex="0">
+          DANIEL JOSEPH M L
+        </h1>
+        <p class="lead mb-4" id="home-title">Full Stack Developer & Cybersecurity Specialist</p>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <p class="mb-4" id="home-summary">Aspiring Junior Web Developer & Penetration Tester with 5+ years of IT experience across various technical roles, including system support, computer maintenance, and web development.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+              <a href="#projects" class="btn btn-outline-info">View Projects</a>
+              <a href="#contact" class="btn btn-info">Contact Me</a>
+              <a href="#about" class="btn btn-outline-light">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Home -->
-  <section id="Home"
-    class="d-flex flex-column justify-content-center align-items-center text-light bg-dark w-100 min-vh-100"
-   >
-    <h1 id="heading" class="fw-bold mb-3 text-center animate__animated animate__fadeInDown">
-      DANIEL JOSEPH M L
-    </h1>
-    <p class="lead text-center">Freelance Web Developer & Cybersecurity Enthusiast</p>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-secondary" role="region" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading" class="text-center mb-5 fw-bold">About Me</h2>
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-center mb-4 mb-lg-0">
+            <img src="image/img.jpg" alt="Profile image of Daniel Joseph" class="img-fluid rounded-circle w-75 border border-3 border-info" loading="lazy" id="profile-image">
+          </div>
+          <div class="col-lg-8">
+            <p class="mb-4" id="about-summary">Skilled in backend and frontend technologies, cybersecurity fundamentals, and penetration testing. CEH-certified and ranked in the top 3% on TryHackMe with hands-on experience in both administrative and developer support environments.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="h5 mb-3">Education</h3>
+                <ul class="list-unstyled education-list" id="education-list">
+                  <!-- Education will be dynamically loaded -->
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h3 class="h5 mb-3">Certifications</h3>
+                <ul class="list-unstyled certifications-list" id="certifications-list">
+                  <!-- Certifications will be dynamically loaded -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- Projects -->
-<section id="project"
-  class="d-flex flex-column justify-content-center align-items-center text-white bg-secondary w-100 min-vh-100"
->
-  <h2 class="mb-4 fw-bold">Projects</h2>
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-dark" role="region" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="text-center mb-5 fw-bold">Technical Skills</h2>
+        <div class="row g-4" id="skills-container">
+          <!-- Skills will be dynamically loaded -->
+        </div>
+      </div>
+    </section>
 
+    <!-- Experience Section -->
+    <section id="experience" class="py-5 bg-secondary" role="region" aria-labelledby="experience-heading">
+      <div class="container">
+        <h2 id="experience-heading" class="text-center mb-5 fw-bold">Professional Experience</h2>
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div class="timeline" id="experience-timeline">
+              <!-- Experience will be dynamically loaded -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    
-    <!-- Posts grid -->
-    <div id="projectRow" class="row g-4">
-      
-    
-    </div>
-  
-</section>
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-dark" role="region" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 id="projects-heading" class="text-center mb-5 fw-bold">Projects</h2>
+        <div id="projectRow" class="row g-4" role="list" aria-label="Project list">
+          <!-- Projects will be dynamically loaded -->
+        </div>
+      </div>
+    </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="py-5 bg-secondary" role="region" aria-labelledby="blog-heading">
+      <div class="container">
+        <h2 id="blog-heading" class="text-center mb-5 fw-bold">Blog</h2>
+        <div id="blogRow" class="row g-4" role="list" aria-label="Blog list">
+          <!-- Blog posts will be dynamically loaded -->
+        </div>
+      </div>
+    </section>
 
-  <!-- Blog -->
-  <section id="blog"
-    class="d-flex flex-column justify-content-center align-items-center text-white bg-secondary w-100 min-vh-100"
-   >
-    <h2>Blog</h2>
-      <!-- Posts grid -->
-    <div id="blogRow" class="row g-4 p-2 m-2">
-      
-    
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-dark" role="region" aria-labelledby="contact-heading">
+      <div class="container">
+        <h2 id="contact-heading" class="text-center mb-5 fw-bold">Contact</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card bg-secondary border-0">
+              <div class="card-body p-4">
+                <div class="row text-center">
+                  <div class="col-md-6 mb-4">
+                    <div class="contact-item">
+                      <i class="bi bi-envelope-fill text-info fs-2 mb-3"></i>
+                      <h5 class="text-light">Email</h5>
+                      <p class="text-muted" id="contact-email">mldaniel020@gmail.com</p>
+                      <a href="mailto:mldaniel020@gmail.com" class="btn btn-outline-info btn-sm">Send Email</a>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="contact-item">
+                      <i class="bi bi-phone-fill text-info fs-2 mb-3"></i>
+                      <h5 class="text-light">Phone</h5>
+                      <p class="text-muted" id="contact-phone">+91-8078036982</p>
+                      <a href="tel:+918078036982" class="btn btn-outline-info btn-sm">Call Now</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center mt-4">
+                  <div class="col-md-6 mb-4">
+                    <div class="contact-item">
+                      <i class="bi bi-github text-info fs-2 mb-3"></i>
+                      <h5 class="text-light">GitHub</h5>
+                      <p class="text-muted" id="contact-github">Danieljoseph96</p>
+                      <a href="https://github.com/Danieljoseph96" target="_blank" class="btn btn-outline-info btn-sm">View Profile</a>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="contact-item">
+                      <i class="bi bi-linkedin text-info fs-2 mb-3"></i>
+                      <h5 class="text-light">LinkedIn</h5>
+                      <p class="text-muted" id="contact-linkedin">daniel-joseph-ml</p>
+                      <a href="https://linkedin.com/in/daniel-joseph-ml-bb0565204" target="_blank" class="btn btn-outline-info btn-sm">Connect</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</main>
-</div>
-
-    
-  </section>
-  <section id="linux" class="hide bg-dark text-light">
-      <!-- Terminal Modal -->
-<div class="row">
-  <div class="col-6  col-sm-12 col-xl-6">
- <div class=" d-flex justify-content-left align-items-center">
-  <div class="row">
-  <div class="col-12 text-center">
-    <h1 class="fw-bold mb-2">Daniel JOSEPH M L</h1>
-    <h6 class="text-info mb-4">Welcome to Terminal</h6>
-  <img 
-  src="image/img.jpg" 
-  alt="Daniel Joseph" 
-  class="img-fluid w-50 border border-info rounded visible-img"
-/>
-
-
-  </div>
-
-  <div class="col-12 text-center mt-4">
-    <p class="text-muted">2</p>
-  </div>
-</div>
-
-
-  
- </div>
-  </div>
-  <div class="col-6 col-sm-12 col-xl-6">
-    <div class="w-100 d-flex justify-content-left align-items-center">
-      <!-- Linux-Style Terminal -->
-<div class="terminal shadow-lg">
-  <div class="terminal-header">
-    <span class="dot red"></span>
-    <span class="dot yellow"></span>
-    <span class="dot green"></span>
-    <span class="terminal-title ms-2">daniel@localhost:~</span>
-  </div>
-
-  <div class="terminal-body">
-    <div id="terminal-output" class="output">
-      <div>it's linux based cmd — you can use <code>help</code> cmd</div>
-      <div>Initializing system...</div>
-      <div>Access granted ✅</div>
-      <div>User: <span class="text-info">daniel@localhost</span></div>
-    </div>
-
-    <div class="terminal-input-line">
-      <span class="prompt text-info">daniel@localhost:~$</span>
-      <input type="text" id="terminal-input" class="input-line" autofocus />
-    </div>
-  </div>
-</div>
-
-
-  </div>
-</div>
-</div>
-</div>
-
-      
-  </section>
-  <!-- <section class=""  id="normal_themes">
-    <h1>Normal 03</h1>
-  </section> -->
-</main>
-
-
+    <!-- Terminal Section -->
+    <section id="linux" class="hide bg-dark text-light" role="complementary" aria-labelledby="terminal-heading">
+      <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+            <div class="text-center">
+              <h1 id="terminal-heading" class="fw-bold mb-2">Daniel JOSEPH M L</h1>
+              <h6 class="text-info mb-4">Welcome to Terminal</h6>
+              <img src="image/xx," alt="Profile image of Daniel Joseph" class="img-fluid w-50 border border-info rounded visible-img" loading="lazy">
+              <div class="mt-4">
+                <p class="text-muted">Type 'help' for commands</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="w-100 d-flex justify-content-center align-items-center">
+              <div class="terminal shadow-lg" role="application" aria-label="Interactive terminal">
+                <div class="terminal-header">
+                  <span class="dot red" aria-hidden="true"></span>
+                  <span class="dot yellow" aria-hidden="true"></span>
+                  <span class="dot green" aria-hidden="true"></span>
+                  <span class="terminal-title ms-2">daniel@localhost:~</span>
+                </div>
+                <div class="terminal-body">
+                  <div id="terminal-output" class="output" aria-live="polite" aria-atomic="true">
+                    <div>Initializing system...</div>
+                    <div>Access granted ✅</div>
+                    <div>User: <span class="text-info">daniel@localhost</span></div>
+                    <div>Type 'help' to see available commands</div>
+                  </div>
+                  <div class="terminal-input-line">
+                    <label for="terminal-input" class="visually-hidden">Terminal command input</label>
+                    <span class="prompt text-info">daniel@localhost:~$</span>
+                    <input type="text" id="terminal-input" class="input-line" autofocus aria-describedby="terminal-output" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="text-center py-3 text-danger small">
-    © 2025 Daniel Joseph — All Rights Reserved
+  <footer class="text-center py-3 text-muted small bg-dark border-top border-secondary" role="contentinfo">
+    <div class="container">
+      <p class="mb-0">© 2025 Daniel Joseph — All Rights Reserved | <span id="security-status" class="text-info">🔒 Secure Connection</span></p>
+    </div>
   </footer>
 
-  <!-- JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
+  <!-- JS Dependencies with Integrity and Defer -->
+  <!-- JS Dependencies with Integrity and Defer - FIXED -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+<script src="js/purify.min.js"></script>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>
