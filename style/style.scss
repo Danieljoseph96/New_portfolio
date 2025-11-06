@@ -119,41 +119,6 @@ main section:hover {
 }
 
 
-.terminal {
-  background-color: $terminal-bg;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 20px $shadow-color;
-  height: 300px;
-  overflow-y: auto;
-  &
-
-  &-header {
-    background: $terminal-header-bg;
-    padding: 8px 10px;
-    border-radius: 10px 10px 0 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    .dot {
-      height: 12px;
-      width: 12px;
-      border-radius: 50%;
-      display: inline-block;
-      &.red { background: $dot-red; }
-      &.yellow { background: $dot-yellow; }
-      &.green { background: $dot-green; }
-    }
-  }
-
-  .cmd-line::before {
-    content: ">";
-    margin-right: 6px;
-    color: $accent;
-  }
-}
-
 
 
 /* hide elements by default */
@@ -190,4 +155,123 @@ main section:hover {
 .visible-img:hover {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.55); /* stronger on hover */
   transform: scale(1.02);
+}
+
+/* Card Animations */
+.hover-scale {
+  transition: all 0.3s ease !important;
+}
+
+.hover-scale:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Modal Glow Effect */
+.modal-glow {
+  box-shadow: 0 0 30px rgba(13, 202, 240, 0.3) !important;
+  animation: modalAppear 0.3s ease-out !important;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Section Animations */
+.section-title {
+  border-bottom: 2px solid;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-content {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.feature-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+/* Badge Animations */
+.tech-badge, .tag-badge {
+  animation: bounceIn 0.5s ease-out;
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover, .tag-badge:hover {
+  transform: scale(1.1);
+}
+
+/* Image Overlay */
+.image-overlay {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+/* Button Loading States */
+.expand-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

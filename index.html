@@ -98,7 +98,7 @@
    >
     <h2>Blog</h2>
       <!-- Posts grid -->
-    <div id="blogRow" class="row g-4">
+    <div id="blogRow" class="row g-4 p-2 m-2">
       
     
     </div>
@@ -138,24 +138,31 @@
   </div>
   <div class="col-6 col-sm-12 col-xl-6">
     <div class="w-100 d-flex justify-content-left align-items-center">
-  <div class="terminal w-85 text-start"> <!-- add text-start -->
-    <div class="terminal-header mb-3">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-      <span class="ms-2 text-light">Terminal</span>
+      <!-- Linux-Style Terminal -->
+<div class="terminal shadow-lg">
+  <div class="terminal-header">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+    <span class="terminal-title ms-2">daniel@localhost:~</span>
+  </div>
+
+  <div class="terminal-body">
+    <div id="terminal-output" class="output">
+      <div>it's linux based cmd — you can use <code>help</code> cmd</div>
+      <div>Initializing system...</div>
+      <div>Access granted ✅</div>
+      <div>User: <span class="text-info">daniel@localhost</span></div>
     </div>
-    <div class="row">
-      <div class="banner border fw-bold p-2 rounded text-light bg-dark">
-  it's linux based cmd — you can use <code>help</code> cmd
+
+    <div class="terminal-input-line">
+      <span class="prompt text-info">daniel@localhost:~$</span>
+      <input type="text" id="terminal-input" class="input-line" autofocus />
+    </div>
+  </div>
 </div>
 
-      <div class="cmd-line">Initializing system...</div>
-      <div class="cmd-line">Connecting to server...</div>
-      <div class="cmd-line">Access granted ✅</div>
-      <div class="cmd-line">User: <span class="text-info">daniel@localhost</span></div>
-      <div class="cmd-line"><span class="text-info">daniel@localhost</span></div>
-    </div>
+
   </div>
 </div>
 </div>

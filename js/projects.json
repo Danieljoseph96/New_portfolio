@@ -4,7 +4,8 @@
         "name":"BLA APP",
         "content":"sample ",
         "lang":"python Django",
-        "image":["../image/img.jpg","../image/img.jpg","../image/img.jpg"],
+        "image":["../image/Screenshot 2025-05-31 105217.png"],
+        "github":"https://github.com/Danieljoseph96/demo_bla",
         "link":" ",
         "video":"  "
     }, {
@@ -12,7 +13,7 @@
         "name":"React TMDB",
         "content":"sample ",
         "lang":"react",
-        "image":["../image/img.jpg","../image/img.jpg","../image/img.jpg"],
+        "image":["../image/391204315-f77dd61e-b434-4a04-a164-55ad6474e2e1.png"],
         "link":" ",
         "video":"  "
     }
