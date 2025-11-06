@@ -31,7 +31,7 @@
     "experience": [
          {
         "id": "exp-4",
-        "role": "Computer Technician",
+        "role": "freelanceing",
         "company": "freelanceing",
         "period": {
           "start": "2025-02",
@@ -39,10 +39,10 @@
           "duration": ""
         },
         "type": "full-time",
-        "responsibilities": [
-          "Diagnosed, repaired, and maintained desktops, laptops, and printers",
-          "Assembled computers and setup networks (cabling and configurations)",
-          "Delivered technical support services to a diverse range of clients"
+        "responsibilities": ["Developed secure web applications and implemented cybersecurity protocols",
+"Architected full-stack solutions with secure network configurations", 
+"Provided technical expertise across web development and security domains"
+          
         ],
         "technologies": ["Hardware Repair", "Network Setup", "Technical Support"]
       },
@@ -82,22 +82,6 @@
           "Delivered technical support services to a diverse range of clients"
         ],
         "technologies": ["Hardware Repair", "Network Setup", "Technical Support"]
-      },
-      {
-        "id": "exp-1",
-        "role": "Apprentice",
-        "company": "Kerala Livestock Development Board (KLDB)",
-        "period": {
-          "start": "2014-12",
-          "end": "2015-12",
-          "duration": "1 year"
-        },
-        "type": "apprenticeship",
-        "responsibilities": [
-          "Assisted in website maintenance using HTML, CSS, and JavaScript",
-          "Supported documentation and e-tendering procedures"
-        ],
-        "technologies": ["HTML", "CSS", "JavaScript"]
       }
     ],
     "skills": {
