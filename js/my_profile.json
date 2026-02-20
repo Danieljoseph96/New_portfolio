@@ -1,0 +1,307 @@
+{
+  "resume": {
+    "metadata": {
+      "version": "1.0",
+      "lastUpdated": "2025-02-01",
+      "format": "developer-portfolio"
+    },
+    "personal": {
+      "name": {
+        "first": "Daniel",
+        "middle": "Joseph M.",
+        "last": "L"
+      },
+      "title": "Technical Assistant | Full Stack Developer | Cybersecurity Enthusiast",
+      "contact": {
+        "phone": "+91-8078036982",
+        "email": "mldaniel020@gmail.com",
+        "profiles": {
+          "github": {
+            "username": "Danieljoseph96",
+            "url": "https://github.com/Danieljoseph96"
+          },
+          "linkedin": {
+            "username": "daniel-joseph-ml-bb0565204",
+            "url": "https://linkedin.com/in/daniel-joseph-ml-bb0565204"
+          }
+        }
+      }
+    },
+    "summary": "Aspiring Junior Web Developer & Penetration Tester with 5+ years of IT experience across various technical roles, including system support, computer maintenance, and web development. Skilled in backend and frontend technologies, cybersecurity fundamentals, and penetration testing. CEH-certified and ranked in the top 3% on TryHackMe with hands-on experience in both administrative and developer support environments.",
+    "experience": [
+         {
+        "id": "exp-4",
+        "role": "freelanceing",
+        "company": "freelanceing",
+        "period": {
+          "start": "2025-02",
+          "end": "now",
+          "duration": ""
+        },
+        "type": "full-time",
+        "responsibilities": ["Developed secure web applications and implemented cybersecurity protocols",
+"Architected full-stack solutions with secure network configurations", 
+"Provided technical expertise across web development and security domains"
+          
+        ],
+        "technologies": ["Hardware Repair", "Network Setup", "Technical Support"]
+      },
+      {
+        "id": "exp-3",
+        "role": "Technical Assistant",
+        "company": "Election Commission of India [SLA project C-DIT]",
+        "period": {
+          "start": "2022-10",
+          "end": "2025-02",
+          "duration": "2 years 5 months"
+        },
+        "type": "full-time",
+        "location": "India",
+        "responsibilities": [
+          "Managed system security, networking, and ongoing technical support operations",
+          "Supervised technical support teams and ensured timely issue resolution",
+          "Oversaw portal management, content updates, and backend support",
+          "Installed, configured, and maintained hardware/software (Windows & Linux environments)",
+          "Collaborated with the Data Analytics team to compile reports and provide actionable insights"
+        ],
+        "technologies": ["Windows", "Linux", "Networking", "System Security"]
+      },
+      {
+        "id": "exp-2",
+        "role": "Computer Technician",
+        "company": "Computer Services",
+        "period": {
+          "start": "2019-05",
+          "end": "2021-06",
+          "duration": "2 years 2 months"
+        },
+        "type": "full-time",
+        "responsibilities": [
+          "Diagnosed, repaired, and maintained desktops, laptops, and printers",
+          "Assembled computers and setup networks (cabling and configurations)",
+          "Delivered technical support services to a diverse range of clients"
+        ],
+        "technologies": ["Hardware Repair", "Network Setup", "Technical Support"]
+      }
+    ],
+    "skills": {
+      "programming": ["Python", "JavaScript", "SQL"],
+      "frontend": {
+        "languages": ["HTML", "CSS", "JavaScript"],
+        "frameworks": ["React.js", "jQuery"],
+        "styling": ["Bootstrap", "Tailwind CSS", "Material UI"]
+      },
+      "backend": {
+        "frameworks": ["Django", "Django REST Framework", "FASTAPI"],
+        "concepts": ["REST APIs", "Authentication", "Middleware"]
+      },
+      "databases": {
+        "relational": ["MySQL", "PostgreSQL", "SQLite"],
+        "cloud": ["Cloud SQL", "Datastore"]
+      },
+      "cybersecurity": {
+        "tools": ["Burp Suite", "Caido", "Gobuster", "Nikto", "Wireshark", "Metasploit"],
+        "certifications": ["CEH", "Jr. Penetration Tester"],
+        "platforms": ["TryHackMe"]
+      },
+      "devops": {
+        "tools": ["Git", "VS Code", "Postman", "MySQL Workbench"],
+        "deployment": ["Multipass", "Ubuntu Server"]
+      }
+    },
+    "education": [
+       {
+        "id": "edu-5",
+        "degree": "Master of Computer Applications (MCA)",
+        "institution": "IGNOU",
+        "year": 2025,
+        "status": "ongoing",
+        "type": "diploma"
+      },
+      {
+        "id": "edu-4",
+        "degree": "Bachelor of Computer Applications (BCA)",
+        "institution": "IGNOU",
+        "year": 2019,
+        "status": "completed",
+        "type": "bachelor"
+      },
+      {
+        "id": "edu-3",
+        "degree": "Diploma in Computer Applications",
+        "institution": "CPT TVM",
+        "year": 2018,
+        "status": "completed",
+        "type": "diploma"
+      },
+      {
+        "id": "edu-2",
+        "degree": "VHSE in Computer Science",
+        "institution": "Paruthipappally",
+        "year": 2014,
+        "status": "completed",
+        "type": "secondary"
+      },
+      {
+        "id": "edu-1",
+        "degree": "SSLC",
+        "institution": "Paruthipappally",
+        "year": 2012,
+        "status": "completed",
+        "type": "secondary"
+      }
+    ],
+    "certifications": [
+      {
+        "id": "cert-1",
+        "name": "Certified Ethical Hacker",
+        "issuer": "EC-Council",
+        "year": null,
+        "validity": {
+          "issued": null,
+          "expires": null
+        }
+      },
+      {
+        "id": "cert-2",
+        "name": "Jr. Penetration Tester",
+        "issuer": "TryHackMe",
+        "year": null
+      },
+      {
+        "id": "cert-3",
+        "name": "Cyber Security 101",
+        "issuer": "TryHackMe",
+        "year": null
+      },
+      {
+        "id": "cert-4",
+        "name": "Pre Security",
+        "issuer": "TryHackMe",
+        "year": null
+      },
+      {
+        "id": "cert-5",
+        "name": "Python (Basic)",
+        "issuer": "HackerRank",
+        "year": null
+      },
+      {
+        "id": "cert-6",
+        "name": "SQL (Basic)",
+        "issuer": "HackerRank",
+        "year": null
+      },
+      {
+        "id": "cert-7",
+        "name": "Software Engineer Intern Certificate",
+        "issuer": "HackerRank",
+        "year": null
+      }
+    ],
+    "projects": [
+      {
+        "id": "proj-1",
+        "name": "Ecom (Django + React)",
+        "description": "An end-to-end e-commerce web application to manage product listings, user authentication, and cart functionality",
+        "category": "full-stack",
+        "img":["image/img.jpg"],
+        "status": "completed",
+        "repository": null,
+        "demo": null,
+        "technologies": ["Django REST Framework", "React", "Redux", "MySQL", "Multipass", "Ubuntu Server"],
+        "features": [
+          "RESTful APIs for authentication, product CRUD, and order logic",
+          "Redux state management for cart and user state",
+          "Token-based authentication system",
+          "Self-hosted deployment on Linux server"
+        ],
+        "highlights": [
+          "Built RESTful APIs in Django to handle authentication, product CRUD, and order logic",
+          "Implemented Redux in React to manage cart and user state",
+          "Used token-based authentication for secure login/logout",
+          "Deployed on a self-hosted Linux server using Multipass"
+        ]
+      },
+      {
+        "id": "proj-2",
+        "name": "Global-Fact-Explorer",
+        "description": "A dynamic single-page web app that fetches and displays real-time country-wise data using public APIs",
+        "category": "frontend",
+        "img":["image/img.jpg"],
+        "status": "completed",
+        "repository": null,
+        "demo": null,
+        "technologies": ["HTML", "CSS", "JavaScript", "AJAX"],
+        "features": [
+          "Real-time country data fetching",
+          "Responsive UI design",
+          "Asynchronous data loading"
+        ],
+        "highlights": [
+          "Integrated a public REST API for country facts and statistics",
+          "Handled asynchronous data loading using vanilla JS and AJAX",
+          "Created a clean and responsive UI using CSS Flexbox and Grid"
+        ]
+      },{
+        "id": "proj-3",
+        "name": "react-movie-DB",
+        "description": "React movie TMDB to design home page",
+        "category": "frontend",
+        "img":["image/img.jpg"],
+        "status": "completed",
+        "repository": null,
+        "demo": null,
+        "technologies": ["React","bootstrap"],
+        "features": [
+          "Real-time country data fetching",
+          "Responsive UI design",
+          "Asynchronous data loading"
+        ],
+        "highlights": [
+          "Integrated a public REST API for country facts and statistics",
+          "Handled asynchronous data loading using vanilla JS and AJAX",
+          "Created a clean and responsive UI using CSS Flexbox and Grid"
+        ]
+      }
+    ],
+    "blog": [
+      {
+        "id": "B1",
+        "title": "Excel Query Book",
+        "slug": "excel-query-book",
+        "description": "Detailed guidance on using queries within Excel to manage and analyze data efficiently",
+        "content": "The Excel Query Book provides detailed guidance on using queries within Excel to manage and analyze data efficiently. It covers how to connect, import, and transform data from multiple sources using Excel's built-in query tools. Each sheet includes step-by-step query examples, explanations, and real-world use cases for better understanding.",
+        "category": "excel",
+        "tags": ["excel", "data-analysis", "queries", "tutorial"],
+        "url": "https://danieljoseph96.github.io/write_up/excel_page.html",
+        "published": null,
+        "image": null
+      },
+      {
+        "id": "B2",
+        "title": "TryHackMe WriteUp",
+        "slug": "tryhackme-writeup",
+        "description": "Collection of TryHackMe room writeups covering beginner to advanced cybersecurity challenges",
+        "content": "A detailed collection of TryHackMe room writeups covering beginner to advanced cybersecurity challenges. Each section explains tools, techniques, and commands used during exploitation and post-exploitation. Perfect for learners practicing penetration testing and CTF problem-solving.",
+        "category": "cybersecurity",
+        "tags": ["tryhackme", "penetration-testing", "ctf", "writeup"],
+        "url": "http://tryhackme.com",
+        "published": null,
+        "image": "../image/391204315-f77dd61e-b434-4a04-a164-55ad6474e2e1.png"
+      },
+      {
+        "id": "B3",
+        "title": "Windows Server and Client Tips & Tricks",
+        "slug": "windows-server-client-tips-tricks",
+        "description": "Practical guide to optimizing and managing Windows Server and Client environments",
+        "content": "A practical guide to optimizing and managing Windows Server and Client environments. Covers key topics like user management, network setup, PowerShell automation, and performance tuning. Ideal for IT professionals and system administrators seeking real-world troubleshooting solutions.",
+        "category": "windows",
+        "tags": ["windows-server", "system-administration", "powershell", "troubleshooting"],
+        "url": "http://microsoft.com",
+        "published": null,
+        "image": null
+      }
+    ]
+  }
+}
